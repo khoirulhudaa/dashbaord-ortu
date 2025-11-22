@@ -23,14 +23,15 @@ import { Otp } from "@/features/otp";
 import { SchoolRegister } from "@/features/schools";
 import { DashboardMain } from "../attendance";
 import PageJadwalAnak from "../jadwalAnak";
+import PageKenaikan from "../kenaikan";
 import PageKesehatan from "../kesehatan";
+import PageKonseling from "../konseling";
 import { LetterPreview } from "../letter/containers/letter-preview";
+import PageProfile from "../myProfile";
 import PagePelacakanSiswa from "../pelacakanSiswa";
+import PagePelayanan from "../pelayanan";
 import PagePerpustakaan from "../perpustakaan";
 import PageTugasNilai from "../tugasDanNilai";
-import PageKonseling from "../konseling";
-import PageKenaikan from "../kenaikan";
-import PagePelayanan from "../pelayanan";
 // import { DashboardMain } from "@/features/parent/pages/DashboardMain"; // halaman beranda
 
 const router = createBrowserRouter(
@@ -55,6 +56,7 @@ const router = createBrowserRouter(
         { path: "konseling", element: <PageKonseling /> },
         { path: "kenaikan-kelulusan", element: <PageKenaikan /> },
         { path: "pelayanan", element: <PagePelayanan /> },
+        { path: "profile", element: <PageProfile /> },
 
         // yang sudah ada sebelumnya
         { path: "format", element: <LetterPreview /> },

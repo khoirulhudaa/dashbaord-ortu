@@ -1540,6 +1540,7 @@
 
 
 
+import Navbar from "@/features/_global/components/navbar";
 import { motion } from "framer-motion";
 import {
   Activity,
@@ -1550,6 +1551,7 @@ import {
   FileText,
   GraduationCap,
   HeartPulse,
+  House,
   Library,
   MapPin,
   MessageSquare,
@@ -1645,78 +1647,51 @@ export const DashboardMain = () => {
   return (
     <div className="min-h-screen to-neutral-950 text-neutral-100">
       {/* Topbar */}
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-neutral-950/70 backdrop-blur">
-        <div className="mx-auto flex max-w-full items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-3">
-            <button className="rounded-xl border border-white/10 p-2 hover:bg-white/5 lg:hidden" onClick={() => setSidebarOpen(v=>!v)} aria-label="Toggle Menu">
-              <div className="h-4 w-5">
-                <span className="mb-1.5 block h-0.5 w-full bg-white" />
-                <span className="mb-1.5 block h-0.5 w-4/5 bg-white" />
-                <span className="block h-0.5 w-3/5 bg-white" />
-              </div>
-            </button>
-            <div className="flex items-center gap-3">
-              <div className="grid h-9 w-9 place-content-center rounded-xl bg-emerald-500/20 text-emerald-300">
-                <Users className="h-5 w-5" />
-              </div>
-              <div>
-                <div className="text-xs uppercase tracking-wide text-white/60">{namaSekolah}</div>
-                <div className="text-sm font-semibold">Dashboard Orang Tua</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            {/* Theme toggle */}
-            <div className="flex gap-1 rounded-xl border border-white/10 bg-white/5 p-1">
-              <button onClick={()=>setTheme("light")} className={clsx("rounded-lg p-1", theme === "light"?"bg-white/20 text-yellow-400":"text-white/60")} aria-label="Mode Terang"><Sun className="h-4 w-4" /></button>
-              <button onClick={()=>setTheme("dark")} className={clsx("rounded-lg p-1", theme === "dark"?"bg-white/20 text-blue-400":"text-white/60")} aria-label="Mode Gelap"><Moon className="h-4 w-4" /></button>
-              <button onClick={()=>setTheme("system")} className={clsx("rounded-lg p-1", theme === "system"?"bg-white/20 text-green-400":"text-white/60")} aria-label="Ikuti Sistem"><Monitor className="h-4 w-4" /></button>
-            </div>
-
-            {/* HS status (read-only, dikontrol admin) */}
-            {homeSchoolingActive && (
-              <span className="rounded-xl border border-green-400/30 bg-green-500/20 px-3 py-1.5 text-sm text-green-300" title="Home Schooling aktif — dikontrol admin sekolah">HS Aktif</span>
-            )}
-
-            <button className="rounded-xl border border-white/10 p-2 hover:bg-white/5"><Bell className="h-5 w-5" /></button>
-            <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-1.5">
-              <UserCircle className="h-5 w-5" />
-              <div><div className="text-sm font-medium leading-4">{namaOrtu}</div></div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Navbar
+        namaSekolah={namaSekolah}
+        namaOrtu={namaOrtu}
+        homeSchoolingActive={homeSchoolingActive}
+        onToggleSidebar={() => setSidebarOpen((v) => !v)}
+      />
 
       {/* Banner Home Schooling */}
-      {homeSchoolingActive && (
+      {/* {homeSchoolingActive && (
         <div className="mx-auto max-w-full px-4 pt-4">
           <motion.div initial={{opacity:0,y:-10}} animate={{opacity:1,y:0}} className="flex items-center justify-between rounded-xl border border-yellow-400/30 bg-yellow-100/10 p-3 text-yellow-200">
             <div className="flex items-center gap-2"><AlertTriangle className="h-5 w-5" /><span><b>Home Schooling Aktif:</b> 3-10 Sep 2025 (Kualitas Udara)</span></div>
             <button className="text-xs underline">Lihat Kebijakan</button>
           </motion.div>
         </div>
-      )}
+      )} */}
 
-      <div className="mx-auto grid max-w-full grid-cols-12 gap-4 px-4 py-4 bg-gradient-to-br from-neutral-950 via-neutral-900">
-        {/* Sidebar */}
-        <aside className={clsx("col-span-12 lg:col-span-3 xl:col-span-2", sidebarOpen?"block":"hidden lg:block")}>
-          <nav className="sticky top-[80px] space-y-2">
-            <SidebarItem active icon={<Activity className="h-4 w-4" />} label="Beranda" href='/' />
-            <SidebarItem icon={<CalendarDays className="h-4 w-4" />} label="Jadwal Anak" href='/jadwal-anak' />
-            <SidebarItem icon={<MapPin className="h-4 w-4" />} label="Pelacakan Siswa" href='/pelacakan-siswa' />
-            <SidebarItem icon={<BookOpen className="h-4 w-4" />} label="Tugas & Nilai" href='/tugas-dan-nilai' />
-            <SidebarItem icon={<HeartPulse className="h-4 w-4" />} label="Kesehatan" href='/kesehatan' />
-            <SidebarItem icon={<Library className="h-4 w-4" />} label="Perpustakaan" href='/perpustakaan' />
-            <SidebarItem icon={<MessageSquare className="h-4 w-4" />} label="Konseling" href='/konseling' />
-            <SidebarItem icon={<GraduationCap className="h-4 w-4" />} label="Kenaikan & Kelulusan" href='/kenaikan-dan-kelulusan' />
-            <SidebarItem icon={<FileText className="h-4 w-4" />} label="Pelayanan" href='/pelayanan' />
-            <SidebarItem icon={<UserCircle className="h-4 w-4" />} label="Profil" href='/profile' />
-          </nav>
-        </aside>
+      <div className="grid grid-cols-12 gap-4 md:px-4 py-6">
+      {/* SIDEBAR — IDENTIK */}
+      <aside
+        className={clsx(
+          "col-span-12 lg:col-span-3 xl:col-span-2",
+          sidebarOpen ? "block" : "hidden lg:block"
+        )}
+      >
+        <nav className="z-[9999] fixed top-[60px] md:pt-0 md:pl-0 pl-4 overflow-auto pt-4 md:top-[88px] bg-black md:bg-transparent h-screen pr-4 space-y-3 border-r border-white/20">
+          <SidebarItem icon={<Activity className="h-4 w-4" />} label="Beranda" to="/" />
+          <SidebarItem icon={<CalendarDays className="h-4 w-4" />} label="Jadwal Anak" to="/jadwal-anak" />
+          <SidebarItem icon={<MapPin className="h-4 w-4" />} label="Pelacakan Siswa" to="/pelacakan-siswa" />
+          <SidebarItem icon={<BookOpen className="h-4 w-4" />} label="Tugas & Nilai" to="/tugas-dan-nilai" />
+          <SidebarItem icon={<HeartPulse className="h-4 w-4" />} label="Kesehatan" to="/kesehatan" />
+          <SidebarItem icon={<Library className="h-4 w-4" />} label="Perpustakaan" to="/perpustakaan" />
+          <SidebarItem icon={<MessageSquare className="h-4 w-4" />} label="Konseling" to="/konseling" />
+          <SidebarItem icon={<GraduationCap className="h-4 w-4" />} label="Kenaikan & Kelulusan" to="/kenaikan-kelulusan" />
+          <SidebarItem icon={<FileText className="h-4 w-4" />} label="Pelayanan" to="/pelayanan" />
+          <SidebarItem icon={<UserCircle className="h-4 w-4" />} label="Profile" to="/profile" />
+        </nav>
+      </aside>
 
         {/* Main */}
-        <main className="col-span-12 lg:col-span-9 xl:col-span-10">
+        <main className="col-span-12 px-7 lg:col-span-9 xl:col-span-10 space-y-8">
+          <h1 className="text-3xl font-bold flex items-center gap-4">
+            <Activity className="h-10 w-10 text-teal-500" />
+            Halaman Utama
+          </h1>
           {homeSchoolingActive && (
             <Card className="col-span-12 mb-4" title="Mode Home Schooling" icon={Activity}>
               <p className="text-sm text-white/70">Saat ini anak belajar dari rumah. Jadwal dan presensi mengikuti mode daring.</p>
@@ -1919,16 +1894,26 @@ function Card({ title, icon: Icon, actions, children, className = "" }: any) {
   );
 }
 
-function SidebarItem({ icon, label, active, href }: any) {
+function SidebarItem({
+  icon,
+  label,
+  to,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  to: string;
+}) {
   return (
     <NavLink
-      to={href}
-      className={clsx(
-        "flex w-full items-center gap-3 rounded-xl border px-3 py-2 text-sm transition-all",
-        active
-          ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
-          : "border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20"
-      )}
+      to={to}
+      className={({ isActive }) =>
+        clsx(
+          "flex w-full items-center gap-3 rounded-xl border px-3 py-2 text-sm transition-all",
+          isActive
+            ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
+            : "border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20"
+        )
+      }
     >
       <span className="grid h-7 w-7 place-content-center rounded-lg bg-white/5">
         {icon}
