@@ -1551,6 +1551,7 @@ import {
   FileText,
   GraduationCap,
   HeartPulse,
+  Home,
   House,
   Library,
   MapPin,
@@ -1597,6 +1598,8 @@ const mockTracking: Record<string, { id: string; nama: string; status: string; l
   ],
 };
 
+
+
 // ---------------------------------
 // Utils
 // ---------------------------------
@@ -1606,7 +1609,7 @@ function clsx(...a: any[]) { return a.filter(Boolean).join(" "); }
 // Main Component
 // ---------------------------------
 export const DashboardMain = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [theme, setTheme] = useState<"system" | "light" | "dark">("system");
   const [hydrated, setHydrated] = useState(false);
   // HS dikontrol admin (read-only di UI orang tua)
@@ -1615,6 +1618,10 @@ export const DashboardMain = () => {
   const [trackConsent, setTrackConsent] = useState(true);
   const [selectedTrackIds, setSelectedTrackIds] = useState<string[]>(["A1", "A2", "A3", "A4"].slice(0, 4));
 
+  useEffect(() => {
+    setSidebarOpen(false); // otomatis tutup tiap ganti halaman
+  }, [location.pathname]);
+  
   // theme hydrate
   useEffect(() => {
     try { const saved = localStorage.getItem("theme"); if (saved === "light" || saved === "dark" || saved === "system") setTheme(saved as any); } catch {}
@@ -1664,7 +1671,7 @@ export const DashboardMain = () => {
         </div>
       )} */}
 
-      <div className="grid grid-cols-12 gap-4 md:px-4 py-6">
+      <div className="grid grid-cols-12 gap-4 px-0 md:px-4 py-6">
       {/* SIDEBAR — IDENTIK */}
       <aside
         className={clsx(
@@ -1673,7 +1680,7 @@ export const DashboardMain = () => {
         )}
       >
         <nav className="z-[9999] fixed top-[60px] md:pt-0 md:pl-0 pl-4 overflow-auto pt-4 md:top-[88px] bg-black md:bg-transparent h-screen pr-4 space-y-3 border-r border-white/20">
-          <SidebarItem icon={<Activity className="h-4 w-4" />} label="Beranda" to="/" />
+          <SidebarItem icon={<Home className="h-4 w-4" />} label="Beranda" to="/" />
           <SidebarItem icon={<CalendarDays className="h-4 w-4" />} label="Jadwal Anak" to="/jadwal-anak" />
           <SidebarItem icon={<MapPin className="h-4 w-4" />} label="Pelacakan Siswa" to="/pelacakan-siswa" />
           <SidebarItem icon={<BookOpen className="h-4 w-4" />} label="Tugas & Nilai" to="/tugas-dan-nilai" />
@@ -1687,9 +1694,9 @@ export const DashboardMain = () => {
       </aside>
 
         {/* Main */}
-        <main className="col-span-12 px-7 lg:col-span-9 xl:col-span-10 space-y-8">
-          <h1 className="text-3xl font-bold flex items-center gap-4">
-            <Activity className="h-10 w-10 text-teal-500" />
+        <main className="col-span-12 px-4 md:px-7 lg:col-span-9 xl:col-span-10 space-y-8">
+          <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-4">
+            <Activity className="w-7 h-7 md:h-10 md:w-10 text-teal-500" />
             Halaman Utama
           </h1>
           {homeSchoolingActive && (

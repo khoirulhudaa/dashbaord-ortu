@@ -75,12 +75,12 @@ export default function PageKenaikan() {
           </nav>
         </aside>
 
-        <main className="col-span-12 px-7 lg:col-span-9 xl:col-span-10 space-y-8">
-          {/* Sidebar aktif: Kenaikan & Kelulusan */}
+        <main className="col-span-12 px-4 md:px-7 lg:col-span-9 xl:col-span-10 space-y-8">
+
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-              <h1 className="text-3xl font-bold flex items-center gap-4 mb-8">
-                <GraduationCap className="h-10 w-10 text-teal-500" />
-                Kenaikan Kelas & Kelulusan
+            <h1 className="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-4">
+            <GraduationCap className="w-7 h-7 md:h-10 md:w-10 text-teal-500" />
+                Kenaikan & Kelulusan
               </h1>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">

@@ -85,10 +85,11 @@ export default function PagePerpustakaan() {
           </nav>
         </aside>
 
-        <main className="col-span-12 px-7 lg:col-span-9 xl:col-span-10 space-y-8">
+        <main className="col-span-12 px-4 md:px-7 lg:col-span-9 xl:col-span-10 space-y-8">
+
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-3xl font-bold flex items-center mb-8 gap-4">
-              <Library className="h-10 w-10 text-teal-500" />
+            <h1 className="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-4">
+            <Library className="w-7 h-7 md:h-10 md:w-10 text-teal-500" />
               Perpustakaan Digital
             </h1>
 
